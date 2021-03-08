@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tool"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd">
+
+	<bean id="s" class="com.lx.entity.Student">
+		<property name="name" value="my"/>
+		<property name="age" value="28"/>
+		<property name="teacherName" value="teacher"/>
+	</bean>
+
+	<bean id="studentPostProcess" class="com.lx.entity.postProcessor.StudentPostProcessor"/>
+
+</beans>
