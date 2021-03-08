@@ -1,4 +1,4 @@
-package com.lx.entity.aop.cjlibProxy;
+package com.lx.entity.aop.cglibProxy;
 
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
