@@ -14,11 +14,11 @@ public class XmlSpringTest {
 		 * 2. 将Resource文件转化为Document文件
 		 * 3. 对Document文件进行解析，实际为Element文件解析
  		 */
+		Person person = (Person) applicationContext.getBean("prodPerson");
 		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(new ClassPathResource("spring.xml"));
 		Person person1 = (Person) xmlBeanFactory.getBean("prodPerson");
 		System.out.println(xmlBeanFactory.getBeanDefinition("prodPerson").getAttribute("key"));
 		System.out.println(person1);
-		Person person = (Person) applicationContext.getBean("prodPerson");
 		System.out.println(person);
 	}
 }
