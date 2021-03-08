@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tool"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd">
+
+		<!-- 构造器造成的循环依赖无法解决	-->
+	<bean id="a" class="com.lx.entity.A">
+		<constructor-arg ref="b"/>
+	</bean>
+
+	<bean id="b" class="com.lx.entity.B">
+		<constructor-arg ref="c"/>
+	</bean>
+
+	<bean id="c" class="com.lx.entity.C">
+		<constructor-arg ref="a"/>
+	</bean>
+
+<!--	<bean id="a" class="com.lx.entity.A">-->
+<!--		<property name="b" ref="b"/>-->
+<!--	</bean>-->
+<!--	<bean id="b" class="com.lx.entity.B">-->
+<!--		<property name="c" ref="c"/>-->
+<!--	</bean>-->
+<!--	<bean id="c" class="com.lx.entity.C">-->
+<!--		<property name="a" ref="a"/>-->
+<!--	</bean>-->
+
+
+</beans>
