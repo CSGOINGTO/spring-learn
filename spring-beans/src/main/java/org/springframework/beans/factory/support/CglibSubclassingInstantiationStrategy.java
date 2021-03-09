@@ -107,6 +107,8 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		/**
 		 * Create a new instance of a dynamically generated subclass implementing the
 		 * required lookups.
+		 * 创建一个动态生成的子类的实例，实现所需要的的lookup
+		 *
 		 * @param ctor constructor to use. If this is {@code null}, use the
 		 * no-arg constructor (no parameterization, or Setter Injection)
 		 * @param args arguments to use for the constructor.

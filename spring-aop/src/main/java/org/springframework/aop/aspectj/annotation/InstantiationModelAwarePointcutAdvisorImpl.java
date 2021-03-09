@@ -84,8 +84,10 @@ class InstantiationModelAwarePointcutAdvisorImpl
 			Method aspectJAdviceMethod, AspectJAdvisorFactory aspectJAdvisorFactory,
 			MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName) {
 
+		// sayHello()
 		this.declaredPointcut = declaredPointcut;
 		this.declaringClass = aspectJAdviceMethod.getDeclaringClass();
+		// public void sayHello()
 		this.methodName = aspectJAdviceMethod.getName();
 		this.parameterTypes = aspectJAdviceMethod.getParameterTypes();
 		this.aspectJAdviceMethod = aspectJAdviceMethod;

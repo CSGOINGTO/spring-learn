@@ -73,6 +73,7 @@ public abstract class BeanFactoryUtils {
 	public static String transformedBeanName(String name) {
 		Assert.notNull(name, "'name' must not be null");
 		String beanName = name;
+		// 判断传入beanName是否以&开头
 		while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) {
 			beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length());
 		}
