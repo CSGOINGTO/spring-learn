@@ -41,6 +41,7 @@ public class SimpleControllerHandlerAdapter implements HandlerAdapter {
 
 	@Override
 	public boolean supports(Object handler) {
+		// 判断是否为实现Controller接口的类
 		return (handler instanceof Controller);
 	}
 

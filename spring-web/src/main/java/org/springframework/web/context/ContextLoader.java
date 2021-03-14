@@ -258,6 +258,16 @@ public class ContextLoader {
 	 * @see #CONFIG_LOCATION_PARAM
 	 */
 	public WebApplicationContext initWebApplicationContext(ServletContext servletContext) {
+		/*
+			1. 在配置中只能声明一次ServletContextListener，多次声明会扰乱Spring的执行逻辑。
+			在spring中如果创建WebApplicationContext实例会记录在ServletContext的属性中，key为WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE，
+			所以验证方式就是查看ServletContext实例中是否有对应的key属性。
+			2. 创建WebApplicationContext实例
+			3. 将WebApplicationContext实例记录在servletContext属性中
+			4. 映射当前的类加载器与创建的实例到全局变量currentContextPerThread中
+		 */
+
+		// 如果web.xml中存在多次ContextLoader定义
 		if (servletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE) != null) {
 			throw new IllegalStateException(
 					"Cannot initialize context because there is already a root application context present - " +
@@ -275,6 +285,7 @@ public class ContextLoader {
 			// Store context in local instance variable, to guarantee that
 			// it is available on ServletContext shutdown.
 			if (this.context == null) {
+				// 初始化context
 				this.context = createWebApplicationContext(servletContext);
 			}
 			if (this.context instanceof ConfigurableWebApplicationContext) {
@@ -291,6 +302,7 @@ public class ContextLoader {
 					configureAndRefreshWebApplicationContext(cwac, servletContext);
 				}
 			}
+			// 记录在servletContext中
 			servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
 
 			ClassLoader ccl = Thread.currentThread().getContextClassLoader();
@@ -365,6 +377,7 @@ public class ContextLoader {
 			}
 		}
 		else {
+			// org.springframework.web.context.support.XmlWebApplicationContext
 			contextClassName = defaultStrategies.getProperty(WebApplicationContext.class.getName());
 			try {
 				return ClassUtils.forName(contextClassName, ContextLoader.class.getClassLoader());
